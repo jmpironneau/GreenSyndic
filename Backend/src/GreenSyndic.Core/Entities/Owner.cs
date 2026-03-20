@@ -5,7 +5,7 @@ namespace GreenSyndic.Core.Entities;
 /// </summary>
 public class Owner : BaseEntity
 {
-    public Guid AppTenantId { get; set; }
+    public Guid OrganizationId { get; set; }
 
     public string FirstName { get; set; } = default!;
     public string LastName { get; set; } = default!;

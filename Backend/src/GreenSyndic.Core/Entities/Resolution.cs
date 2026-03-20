@@ -17,8 +17,8 @@ public class Resolution : BaseEntity
     public int VotesFor { get; set; }
     public int VotesAgainst { get; set; }
     public int VotesAbstain { get; set; }
-    public decimal TantiemesFor { get; set; }                  // Tantièmes pour
-    public decimal TantiemesAgainst { get; set; }
+    public decimal SharesFor { get; set; }                     // Tantièmes pour
+    public decimal SharesAgainst { get; set; }
     public bool IsApproved { get; set; }
     public string? Notes { get; set; }
 

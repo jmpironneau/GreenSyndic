@@ -7,10 +7,10 @@ namespace GreenSyndic.Core.Entities;
 /// </summary>
 public class Meeting : BaseEntity
 {
-    public Guid AppTenantId { get; set; }
+    public Guid OrganizationId { get; set; }
 
-    public Guid CoproprieteId { get; set; }
-    public Copropriete Copropriete { get; set; } = default!;
+    public Guid CoOwnershipId { get; set; }
+    public CoOwnership CoOwnership { get; set; } = default!;
 
     public string Title { get; set; } = default!;
     public MeetingType Type { get; set; }

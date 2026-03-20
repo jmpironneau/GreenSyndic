@@ -187,7 +187,7 @@ public enum UserRole
     ReadOnly                // Consultation seule
 }
 
-public enum CoproprieteLevelType
+public enum CoOwnershipLevel
 {
     Horizontal, // Copropriété horizontale (ensemble Green City)
     Vertical    // Copropriété verticale (par immeuble)

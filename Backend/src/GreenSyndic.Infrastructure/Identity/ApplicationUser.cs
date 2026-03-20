@@ -9,7 +9,7 @@ public class ApplicationUser : IdentityUser
 {
     public string FirstName { get; set; } = default!;
     public string LastName { get; set; } = default!;
-    public Guid? AppTenantId { get; set; }
+    public Guid? OrganizationId { get; set; }
     public string? ProfileRole { get; set; }                   // Mapped to UserRole enum
     public bool IsActive { get; set; } = true;
     public DateTime CreatedAt { get; set; } = DateTime.UtcNow;

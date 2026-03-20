@@ -4,6 +4,7 @@ using GreenSyndic.Infrastructure.Identity;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using GreenSyndic.Services.Auth;
 using Microsoft.IdentityModel.Tokens;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -47,6 +48,9 @@ builder.Services.AddAuthentication(options =>
 
 builder.Services.AddAuthorization();
 
+// === Services ===
+builder.Services.AddScoped<AuthService>();
+
 // === API ===
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
@@ -63,6 +67,9 @@ builder.Services.AddCors(options =>
 });
 
 var app = builder.Build();
+
+// === Seed Data ===
+await SeedData.InitializeAsync(app.Services);
 
 // === Middleware Pipeline ===
 if (app.Environment.IsDevelopment())

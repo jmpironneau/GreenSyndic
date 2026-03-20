@@ -7,13 +7,13 @@ namespace GreenSyndic.Core.Entities;
 /// </summary>
 public class Lease : BaseEntity
 {
-    public Guid AppTenantId { get; set; }
+    public Guid OrganizationId { get; set; }
 
     public Guid UnitId { get; set; }
     public Unit Unit { get; set; } = default!;
 
-    public Guid LocataireId { get; set; }
-    public Locataire Locataire { get; set; } = default!;
+    public Guid LeaseTenantId { get; set; }
+    public LeaseTenant LeaseTenant { get; set; } = default!;
 
     public string Reference { get; set; } = default!;         // Numéro du bail
     public LeaseType Type { get; set; }

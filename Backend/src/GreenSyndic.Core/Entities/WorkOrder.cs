@@ -7,7 +7,7 @@ namespace GreenSyndic.Core.Entities;
 /// </summary>
 public class WorkOrder : BaseEntity
 {
-    public Guid AppTenantId { get; set; }
+    public Guid OrganizationId { get; set; }
 
     public string Reference { get; set; } = default!;
     public string Title { get; set; } = default!;

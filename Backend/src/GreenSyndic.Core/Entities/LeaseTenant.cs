@@ -1,11 +1,11 @@
 namespace GreenSyndic.Core.Entities;
 
 /// <summary>
-/// Locataire / Lease tenant (residential or commercial).
+/// Lease tenant (residential or commercial).
 /// </summary>
-public class Locataire : BaseEntity
+public class LeaseTenant : BaseEntity
 {
-    public Guid AppTenantId { get; set; }
+    public Guid OrganizationId { get; set; }
 
     public string FirstName { get; set; } = default!;
     public string LastName { get; set; } = default!;

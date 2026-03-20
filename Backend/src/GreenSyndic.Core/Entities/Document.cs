@@ -7,7 +7,7 @@ namespace GreenSyndic.Core.Entities;
 /// </summary>
 public class Document : BaseEntity
 {
-    public Guid AppTenantId { get; set; }
+    public Guid OrganizationId { get; set; }
 
     public string FileName { get; set; } = default!;
     public string? DisplayName { get; set; }

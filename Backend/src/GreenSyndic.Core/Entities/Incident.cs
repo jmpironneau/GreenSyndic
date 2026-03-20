@@ -7,7 +7,7 @@ namespace GreenSyndic.Core.Entities;
 /// </summary>
 public class Incident : BaseEntity
 {
-    public Guid AppTenantId { get; set; }
+    public Guid OrganizationId { get; set; }
 
     public Guid? UnitId { get; set; }
     public Unit? Unit { get; set; }

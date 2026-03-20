@@ -5,7 +5,7 @@ namespace GreenSyndic.Core.Entities;
 /// </summary>
 public class AccountingEntry : BaseEntity
 {
-    public Guid AppTenantId { get; set; }
+    public Guid OrganizationId { get; set; }
 
     public string EntryNumber { get; set; } = default!;        // Numéro d'écriture
     public DateTime EntryDate { get; set; }
@@ -24,5 +24,5 @@ public class AccountingEntry : BaseEntity
     public Guid? ChargeAssignmentId { get; set; }
     public Guid? LeaseId { get; set; }
 
-    public Guid? CoproprieteId { get; set; }
+    public Guid? CoOwnershipId { get; set; }
 }

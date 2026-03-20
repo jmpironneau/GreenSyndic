@@ -5,7 +5,7 @@ namespace GreenSyndic.Core.Entities;
 /// </summary>
 public class Supplier : BaseEntity
 {
-    public Guid AppTenantId { get; set; }
+    public Guid OrganizationId { get; set; }
 
     public string Name { get; set; } = default!;
     public string? ContactPerson { get; set; }

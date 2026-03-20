@@ -7,8 +7,8 @@ namespace GreenSyndic.Core.Entities;
 /// </summary>
 public class ChargeDefinition : BaseEntity
 {
-    public Guid CoproprieteId { get; set; }
-    public Copropriete Copropriete { get; set; } = default!;
+    public Guid CoOwnershipId { get; set; }
+    public CoOwnership CoOwnership { get; set; } = default!;
 
     public string Name { get; set; } = default!;               // "Sécurité 24h", "STEP", "Ascenseur"
     public ChargeType Type { get; set; }

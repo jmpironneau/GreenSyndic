@@ -7,11 +7,11 @@ namespace GreenSyndic.Core.Entities;
 /// </summary>
 public class Building : BaseEntity
 {
-    public Guid AppTenantId { get; set; }
-    public AppTenant AppTenant { get; set; } = default!;
+    public Guid OrganizationId { get; set; }
+    public Organization Organization { get; set; } = default!;
 
-    public Guid? CoproprieteId { get; set; }
-    public Copropriete? Copropriete { get; set; }
+    public Guid? CoOwnershipId { get; set; }
+    public CoOwnership? CoOwnership { get; set; }
 
     public string Name { get; set; } = default!;              // "Acajou", "COSMOS", "Retail Park"
     public string? Code { get; set; }                          // Code court

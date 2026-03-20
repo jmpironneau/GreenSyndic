@@ -5,7 +5,7 @@ namespace GreenSyndic.Core.Entities;
 /// </summary>
 public class Notification : BaseEntity
 {
-    public Guid AppTenantId { get; set; }
+    public Guid OrganizationId { get; set; }
 
     public string UserId { get; set; } = default!;             // Target user
     public string Title { get; set; } = default!;

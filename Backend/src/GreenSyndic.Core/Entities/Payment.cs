@@ -8,7 +8,7 @@ namespace GreenSyndic.Core.Entities;
 /// </summary>
 public class Payment : BaseEntity
 {
-    public Guid AppTenantId { get; set; }
+    public Guid OrganizationId { get; set; }
 
     public string Reference { get; set; } = default!;         // Numéro de paiement
     public decimal Amount { get; set; }
@@ -23,8 +23,8 @@ public class Payment : BaseEntity
     public Guid? OwnerId { get; set; }
     public Owner? Owner { get; set; }
 
-    public Guid? LocataireId { get; set; }
-    public Locataire? Locataire { get; set; }
+    public Guid? LeaseTenantId { get; set; }
+    public LeaseTenant? LeaseTenant { get; set; }
 
     public Guid? LeaseId { get; set; }
     public Lease? Lease { get; set; }

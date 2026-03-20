@@ -10,12 +10,12 @@ public class GreenSyndicDbContext : IdentityDbContext<ApplicationUser>
     public GreenSyndicDbContext(DbContextOptions<GreenSyndicDbContext> options) : base(options) { }
 
     // Domain entities
-    public DbSet<AppTenant> AppTenants => Set<AppTenant>();
-    public DbSet<Copropriete> Coproprietes => Set<Copropriete>();
+    public DbSet<Organization> Organizations => Set<Organization>();
+    public DbSet<CoOwnership> CoOwnerships => Set<CoOwnership>();
     public DbSet<Building> Buildings => Set<Building>();
     public DbSet<Unit> Units => Set<Unit>();
     public DbSet<Owner> Owners => Set<Owner>();
-    public DbSet<Locataire> Locataires => Set<Locataire>();
+    public DbSet<LeaseTenant> LeaseTenants => Set<LeaseTenant>();
     public DbSet<Lease> Leases => Set<Lease>();
     public DbSet<ChargeDefinition> ChargeDefinitions => Set<ChargeDefinition>();
     public DbSet<ChargeAssignment> ChargeAssignments => Set<ChargeAssignment>();
@@ -47,12 +47,12 @@ public class GreenSyndicDbContext : IdentityDbContext<ApplicationUser>
             }
         }
 
-        // Copropriete self-referencing (horizontal -> vertical)
-        builder.Entity<Copropriete>(e =>
+        // CoOwnership self-referencing (horizontal -> vertical)
+        builder.Entity<CoOwnership>(e =>
         {
-            e.HasOne(c => c.ParentCopropriete)
-                .WithMany(c => c.ChildCoproprietes)
-                .HasForeignKey(c => c.ParentCoproprieteId)
+            e.HasOne(c => c.ParentCoOwnership)
+                .WithMany(c => c.ChildCoOwnerships)
+                .HasForeignKey(c => c.ParentCoOwnershipId)
                 .OnDelete(DeleteBehavior.Restrict);
         });
 
