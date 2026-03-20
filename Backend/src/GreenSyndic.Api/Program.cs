@@ -80,6 +80,8 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.UseCors("AllowAll");
+app.UseDefaultFiles();
+app.UseStaticFiles();
 app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllers();
@@ -87,5 +89,19 @@ app.MapControllers();
 // Health check endpoint
 app.MapGet("/health", () => Results.Ok(new { Status = "Healthy", Timestamp = DateTime.UtcNow }))
     .WithTags("Health");
+
+// Version endpoint for landing page
+app.MapGet("/api/version", () =>
+{
+    var now = DateTime.Now;
+    var timestamp = now.ToString("yyMMdd.HHmm");
+    return Results.Ok(new
+    {
+        timestamp,
+        version = "v0.2.0",
+        commitHash = "9a7c33e",
+        environment = app.Environment.IsDevelopment() ? "DEV" : "PROD"
+    });
+}).WithTags("Health");
 
 app.Run();
