@@ -99,6 +99,41 @@ public class GreenSyndicDbContext : IdentityDbContext<ApplicationUser>
         }
     }
 
+    public override int SaveChanges()
+    {
+        NormalizeDateTimesToUtc();
+        return base.SaveChanges();
+    }
+
+    public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
+    {
+        NormalizeDateTimesToUtc();
+        return base.SaveChangesAsync(cancellationToken);
+    }
+
+    /// <summary>
+    /// Npgsql 10 requires DateTimeKind.Utc for timestamptz columns.
+    /// This normalizes all DateTime properties on tracked entities before save.
+    /// </summary>
+    private void NormalizeDateTimesToUtc()
+    {
+        foreach (var entry in ChangeTracker.Entries())
+        {
+            if (entry.State is EntityState.Added or EntityState.Modified)
+            {
+                foreach (var prop in entry.Properties)
+                {
+                    if (prop.CurrentValue is DateTime dt && dt.Kind != DateTimeKind.Utc)
+                    {
+                        prop.CurrentValue = dt.Kind == DateTimeKind.Unspecified
+                            ? DateTime.SpecifyKind(dt, DateTimeKind.Utc)
+                            : dt.ToUniversalTime();
+                    }
+                }
+            }
+        }
+    }
+
     private static void ApplySoftDeleteFilter<T>(ModelBuilder builder) where T : BaseEntity
     {
         builder.Entity<T>().HasQueryFilter(e => !e.IsDeleted);

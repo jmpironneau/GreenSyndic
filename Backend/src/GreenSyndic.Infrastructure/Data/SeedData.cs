@@ -15,7 +15,11 @@ public static class SeedData
         var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
         var userManager = scope.ServiceProvider.GetRequiredService<UserManager<ApplicationUser>>();
 
-        await db.Database.MigrateAsync();
+        // InMemory provider doesn't support migrations
+        if (db.Database.ProviderName == "Microsoft.EntityFrameworkCore.InMemory")
+            await db.Database.EnsureCreatedAsync();
+        else
+            await db.Database.MigrateAsync();
 
         // Create roles
         string[] roles = ["SuperAdmin", "SyndicManager", "SyndicAccountant", "SyndicTechnician",

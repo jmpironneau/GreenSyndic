@@ -106,6 +106,9 @@ public class ChargeDefinitionsController : ControllerBase
             Name = entity.Name,
             Type = entity.Type,
             AnnualAmount = entity.AnnualAmount,
+            DistributionKey = entity.DistributionKey,
+            IsRecoverable = entity.IsRecoverable,
+            Description = entity.Description,
             FiscalYear = entity.FiscalYear
         });
     }

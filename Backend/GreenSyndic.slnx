@@ -5,4 +5,7 @@
     <Project Path="src/GreenSyndic.Infrastructure/GreenSyndic.Infrastructure.csproj" />
     <Project Path="src/GreenSyndic.Services/GreenSyndic.Services.csproj" />
   </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/GreenSyndic.Tests/GreenSyndic.Tests.csproj" />
+  </Folder>
 </Solution>
