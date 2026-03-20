@@ -1,0 +1,8 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/GreenSyndic.Api/GreenSyndic.Api.csproj" />
+    <Project Path="src/GreenSyndic.Core/GreenSyndic.Core.csproj" />
+    <Project Path="src/GreenSyndic.Infrastructure/GreenSyndic.Infrastructure.csproj" />
+    <Project Path="src/GreenSyndic.Services/GreenSyndic.Services.csproj" />
+  </Folder>
+</Solution>

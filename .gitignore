@@ -1,0 +1,55 @@
+# .NET
+bin/
+obj/
+*.user
+*.suo
+*.cache
+*.dll
+*.pdb
+*.exe
+*.log
+*.vs/
+.vs/
+
+# IDE
+.idea/
+*.swp
+*.sln.docstates
+
+# User-specific files
+*.rsuser
+*.userosscache
+
+# Build results
+[Dd]ebug/
+[Rr]elease/
+x64/
+x86/
+[Ww][Ii][Nn]32/
+
+# NuGet
+*.nupkg
+**/packages/*
+!**/packages/build/
+
+# Node (Frontend PWA)
+node_modules/
+dist/
+.env
+.env.local
+.env.*.local
+
+# Docker
+docker-compose.override.yml
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Temp files
+*.tmp
+specs_extract.txt
+
+# Secrets
+appsettings.Production.json
