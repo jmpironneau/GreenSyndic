@@ -1,11 +1,18 @@
 <Solution>
-  <Folder Name="/src/">
-    <Project Path="src/GreenSyndic.Api/GreenSyndic.Api.csproj" />
-    <Project Path="src/GreenSyndic.Core/GreenSyndic.Core.csproj" />
-    <Project Path="src/GreenSyndic.Infrastructure/GreenSyndic.Infrastructure.csproj" />
-    <Project Path="src/GreenSyndic.Services/GreenSyndic.Services.csproj" />
+  <Folder Name="/backend/">
+    <Project Path="GreenSyndic.Api/GreenSyndic.Api.csproj" />
+    <Project Path="GreenSyndic.Core/GreenSyndic.Core.csproj" />
+    <Project Path="GreenSyndic.Infrastructure/GreenSyndic.Infrastructure.csproj" />
+    <Project Path="GreenSyndic.Services/GreenSyndic.Services.csproj" />
+  </Folder>
+  <Folder Name="/frontend/">
+    <Project Path="../Frontend/DeskSyndic/DeskSyndic.csproj" />
+    <Project Path="../Frontend/MobSyndic/MobSyndic.csproj" />
+    <Project Path="../Frontend/MobProprio/MobProprio.csproj" />
+    <Project Path="../Frontend/MobLoc/MobLoc.csproj" />
+    <Project Path="../Frontend/Seed/Seed.csproj" />
   </Folder>
   <Folder Name="/tests/">
-    <Project Path="tests/GreenSyndic.Tests/GreenSyndic.Tests.csproj" />
+    <Project Path="GreenSyndic.Tests/GreenSyndic.Tests.csproj" />
   </Folder>
 </Solution>

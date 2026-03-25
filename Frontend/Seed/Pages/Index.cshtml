@@ -1,0 +1,712 @@
+@page "/"
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>GreenSyndic - Donn&eacute;es de d&eacute;veloppement</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background: #f0f2f5;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* ── Header ─────────────────────────────────────────── */
+        .header {
+            background: #fff;
+            border-bottom: 1px solid #e0e0e0;
+            padding: 0 24px;
+            height: 56px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            flex-shrink: 0;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+        }
+        .header-brand {
+            font-size: 20px;
+            font-weight: 700;
+            color: #1a1a1a;
+            letter-spacing: -0.3px;
+        }
+        .header-env {
+            font-size: 13px;
+            font-weight: 600;
+            color: #e53e3e;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .header-db {
+            font-size: 12px;
+            font-weight: 600;
+            color: #38a169;
+            border: 1.5px solid #38a169;
+            border-radius: 4px;
+            padding: 2px 10px;
+            letter-spacing: 0.3px;
+        }
+        .header-spacer { flex: 1; }
+        .header-version {
+            font-size: 12px;
+            color: #999;
+            font-weight: 500;
+        }
+
+        /* ── Layout ─────────────────────────────────────────── */
+        .layout {
+            display: flex;
+            flex: 1;
+            overflow: hidden;
+        }
+
+        /* ── Sidebar ────────────────────────────────────────── */
+        .sidebar {
+            width: 220px;
+            background: #fff;
+            border-right: 1px solid #e0e0e0;
+            overflow-y: auto;
+            flex-shrink: 0;
+        }
+        .sidebar-title {
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            color: #999;
+            letter-spacing: 0.8px;
+            padding: 16px 16px 8px;
+        }
+        .sidebar-item {
+            display: block;
+            padding: 6px 16px;
+            font-size: 13px;
+            color: #555;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background 0.15s, color 0.15s;
+            border: none;
+            background: none;
+            width: 100%;
+            text-align: left;
+            font-family: inherit;
+        }
+        .sidebar-item:hover {
+            background: #f5f5f5;
+            color: #1a1a1a;
+        }
+        .sidebar-item.active {
+            background: #edf2f7;
+            color: #2b6cb0;
+            font-weight: 600;
+        }
+
+        /* ── Main ───────────────────────────────────────────── */
+        .main {
+            flex: 1;
+            overflow-y: auto;
+            padding: 24px;
+            padding-bottom: 100px;
+        }
+        .main-title {
+            font-size: 15px;
+            font-weight: 600;
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        /* ── Card Grid ──────────────────────────────────────── */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 16px;
+        }
+        .card {
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.04);
+            padding: 16px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: box-shadow 0.2s;
+        }
+        .card:hover {
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        .card-name {
+            font-size: 12px;
+            font-weight: 700;
+            color: #555;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+            margin-bottom: 8px;
+            text-align: center;
+            word-break: break-word;
+        }
+        .card-count {
+            font-size: 32px;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 12px;
+            line-height: 1;
+        }
+        .card-count.zero { color: #ccc; }
+        .card-actions {
+            display: flex;
+            gap: 8px;
+        }
+        .btn-card {
+            font-size: 11px;
+            font-weight: 600;
+            padding: 4px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.15s;
+            border: 1.5px solid;
+            background: #fff;
+        }
+        .btn-voir {
+            color: #3182ce;
+            border-color: #3182ce;
+        }
+        .btn-voir:hover {
+            background: #3182ce;
+            color: #fff;
+        }
+        .btn-suppr {
+            color: #e53e3e;
+            border-color: #e53e3e;
+        }
+        .btn-suppr:hover {
+            background: #e53e3e;
+            color: #fff;
+        }
+
+        /* ── Bottom Bar ─────────────────────────────────────── */
+        .bottom-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: #fff;
+            border-top: 1px solid #e0e0e0;
+            padding: 12px 24px;
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            z-index: 100;
+            box-shadow: 0 -2px 8px rgba(0,0,0,0.06);
+        }
+        .btn-action {
+            font-size: 14px;
+            font-weight: 600;
+            padding: 10px 28px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: opacity 0.2s, transform 0.1s;
+            letter-spacing: 0.2px;
+        }
+        .btn-action:hover { opacity: 0.9; }
+        .btn-action:active { transform: scale(0.98); }
+        .btn-action:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        .btn-demo {
+            background: linear-gradient(135deg, #d69e2e, #ecc94b);
+            color: #fff;
+        }
+        .btn-test {
+            background: linear-gradient(135deg, #2b6cb0, #4299e1);
+            color: #fff;
+        }
+        .btn-delete-all {
+            background: linear-gradient(135deg, #c53030, #e53e3e);
+            color: #fff;
+        }
+
+        /* ── Modal ──────────────────────────────────────────── */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.5);
+            z-index: 200;
+            justify-content: center;
+            align-items: center;
+        }
+        .modal-overlay.active { display: flex; }
+        .modal {
+            background: #fff;
+            border-radius: 10px;
+            width: 90vw;
+            max-width: 1000px;
+            max-height: 80vh;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        .modal-header {
+            padding: 16px 20px;
+            border-bottom: 1px solid #e0e0e0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .modal-title {
+            font-size: 16px;
+            font-weight: 700;
+            color: #1a1a1a;
+        }
+        .modal-close {
+            background: none;
+            border: none;
+            font-size: 22px;
+            cursor: pointer;
+            color: #999;
+            padding: 4px 8px;
+            border-radius: 4px;
+        }
+        .modal-close:hover { background: #f5f5f5; color: #333; }
+        .modal-body {
+            overflow: auto;
+            padding: 16px 20px;
+            flex: 1;
+        }
+        .modal-body table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 12px;
+        }
+        .modal-body th {
+            background: #f7fafc;
+            text-align: left;
+            padding: 8px 10px;
+            font-weight: 700;
+            color: #555;
+            text-transform: uppercase;
+            font-size: 10px;
+            letter-spacing: 0.5px;
+            border-bottom: 2px solid #e0e0e0;
+            position: sticky;
+            top: 0;
+        }
+        .modal-body td {
+            padding: 6px 10px;
+            border-bottom: 1px solid #f0f0f0;
+            color: #333;
+            max-width: 250px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+        .modal-body tr:hover td { background: #f7fafc; }
+
+        /* ── Toast ──────────────────────────────────────────── */
+        .toast {
+            position: fixed;
+            top: 70px;
+            right: 24px;
+            padding: 12px 20px;
+            border-radius: 8px;
+            color: #fff;
+            font-size: 13px;
+            font-weight: 600;
+            z-index: 300;
+            opacity: 0;
+            transform: translateY(-10px);
+            transition: all 0.3s;
+            pointer-events: none;
+        }
+        .toast.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .toast.success { background: #38a169; }
+        .toast.error { background: #e53e3e; }
+        .toast.info { background: #3182ce; }
+
+        /* ── Error banner ─────────────────────────────────────── */
+        .error-banner {
+            display: none;
+            background: #fff5f5;
+            border: 1px solid #feb2b2;
+            border-left: 4px solid #e53e3e;
+            color: #c53030;
+            padding: 10px 16px;
+            margin: 0 24px 16px;
+            border-radius: 6px;
+            font-size: 13px;
+            align-items: center;
+            gap: 10px;
+        }
+        .error-banner.visible { display: flex; }
+        .error-banner-msg { flex: 1; }
+        .error-banner-close {
+            background: none;
+            border: none;
+            font-size: 18px;
+            color: #c53030;
+            cursor: pointer;
+            padding: 0 4px;
+            line-height: 1;
+        }
+        .error-banner-close:hover { color: #9b2c2c; }
+
+        /* ── Loading overlay ────────────────────────────────── */
+        .loading-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(255,255,255,0.8);
+            z-index: 250;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            gap: 16px;
+        }
+        .loading-overlay.active { display: flex; }
+        .spinner {
+            width: 40px;
+            height: 40px;
+            border: 4px solid #e0e0e0;
+            border-top-color: #3182ce;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+        }
+        @@keyframes spin { to { transform: rotate(360deg); } }
+        .loading-text {
+            font-size: 14px;
+            font-weight: 600;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Header -->
+<div class="header">
+    <span class="header-brand">GreenSyndic</span>
+    <span class="header-env">D&eacute;veloppement</span>
+    <span class="header-db">greensyndic_dev</span>
+    <span class="header-spacer"></span>
+    <span class="header-version">v0.1.0</span>
+</div>
+
+<!-- Layout -->
+<div class="layout">
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <div class="sidebar-title">Tables</div>
+        <div id="sidebar-list"></div>
+    </div>
+
+    <!-- Main content -->
+    <div class="main">
+        <div class="error-banner" id="error-banner">
+            <span class="error-banner-msg" id="error-banner-msg"></span>
+            <button class="error-banner-close" onclick="closeError()">&times;</button>
+        </div>
+        <div class="main-title" id="total-label">Chargement...</div>
+        <div class="card-grid" id="card-grid"></div>
+    </div>
+</div>
+
+<!-- Bottom bar -->
+<div class="bottom-bar">
+    <button class="btn-action btn-demo" onclick="seedDemo()" id="btn-demo">
+        &#11088; G&eacute;n&eacute;rer D&eacute;mo Id&eacute;ale
+    </button>
+    <button class="btn-action btn-test" onclick="seedTest()" id="btn-test">
+        G&eacute;n&eacute;rer les donn&eacute;es de test
+    </button>
+    <button class="btn-action btn-delete-all" onclick="deleteAll()" id="btn-delete-all">
+        Supprimer toutes les donn&eacute;es
+    </button>
+</div>
+
+<!-- Modal -->
+<div class="modal-overlay" id="modal-overlay" onclick="closeModal(event)">
+    <div class="modal" onclick="event.stopPropagation()">
+        <div class="modal-header">
+            <span class="modal-title" id="modal-title">Table</span>
+            <button class="modal-close" onclick="closeModal()">&times;</button>
+        </div>
+        <div class="modal-body" id="modal-body"></div>
+    </div>
+</div>
+
+<!-- Loading overlay -->
+<div class="loading-overlay" id="loading-overlay">
+    <div class="spinner"></div>
+    <div class="loading-text" id="loading-text">Chargement...</div>
+</div>
+
+<!-- Toast -->
+<div class="toast" id="toast"></div>
+
+<script>
+    let tableCounts = {};
+
+    // ── Init ──────────────────────────────────────────────
+    document.addEventListener('DOMContentLoaded', () => {
+        loadCounts();
+    });
+
+    // ── Load counts ───────────────────────────────────────
+    async function loadCounts() {
+        try {
+            const res = await fetch('/api/table-counts');
+            if (!res.ok) throw new Error('Failed to load counts');
+            tableCounts = await res.json();
+            renderSidebar();
+            renderCards();
+        } catch (e) {
+            showToast('Erreur: ' + e.message, 'error');
+        }
+    }
+
+    // ── Render sidebar ────────────────────────────────────
+    function renderSidebar() {
+        const list = document.getElementById('sidebar-list');
+        const names = Object.keys(tableCounts).sort();
+        list.innerHTML = names.map(name =>
+            `<button class="sidebar-item" onclick="viewTable('${name}')">${name}</button>`
+        ).join('');
+    }
+
+    // ── Render cards ──────────────────────────────────────
+    function renderCards() {
+        const grid = document.getElementById('card-grid');
+        const names = Object.keys(tableCounts).sort();
+        const total = Object.values(tableCounts).reduce((a, b) => a + b, 0);
+
+        document.getElementById('total-label').textContent =
+            `${names.length} tables \u2014 ${total.toLocaleString('fr-FR')} enregistrements au total`;
+
+        grid.innerHTML = names.map(name => {
+            const count = tableCounts[name];
+            const zeroClass = count === 0 ? ' zero' : '';
+            return `
+                <div class="card" id="card-${name}">
+                    <div class="card-name">${name}</div>
+                    <div class="card-count${zeroClass}">${count.toLocaleString('fr-FR')}</div>
+                    <div class="card-actions">
+                        <button class="btn-card btn-voir" onclick="viewTable('${name}')">Voir</button>
+                        <button class="btn-card btn-suppr" onclick="deleteTable('${name}')">Suppr</button>
+                    </div>
+                </div>
+            `;
+        }).join('');
+    }
+
+    // ── View table data ───────────────────────────────────
+    async function viewTable(name) {
+        showLoading('Chargement de ' + name + '...');
+        try {
+            const res = await fetch('/api/table/' + name);
+            if (!res.ok) throw new Error('Failed to load table');
+            const rows = await res.json();
+
+            document.getElementById('modal-title').textContent =
+                name + ' (' + rows.length + ' lignes)';
+
+            const body = document.getElementById('modal-body');
+            if (rows.length === 0) {
+                body.innerHTML = '<p style="color:#999;text-align:center;padding:40px;">Aucune donn\u00e9e</p>';
+            } else {
+                const keys = Object.keys(rows[0]);
+                body.innerHTML = `
+                    <table>
+                        <thead>
+                            <tr>${keys.map(k => `<th>${k}</th>`).join('')}</tr>
+                        </thead>
+                        <tbody>
+                            ${rows.map(row =>
+                                `<tr>${keys.map(k => {
+                                    let v = row[k];
+                                    if (v === null || v === undefined) v = '';
+                                    if (typeof v === 'object') v = JSON.stringify(v);
+                                    let s = String(v);
+                                    if (s.length > 60) s = s.substring(0, 57) + '...';
+                                    return `<td title="${String(v).replace(/"/g, '&quot;')}">${s}</td>`;
+                                }).join('')}</tr>`
+                            ).join('')}
+                        </tbody>
+                    </table>
+                `;
+            }
+
+            hideLoading();
+            document.getElementById('modal-overlay').classList.add('active');
+
+            // Highlight sidebar
+            document.querySelectorAll('.sidebar-item').forEach(el => {
+                el.classList.toggle('active', el.textContent === name);
+            });
+        } catch (e) {
+            hideLoading();
+            showToast('Erreur: ' + e.message, 'error');
+        }
+    }
+
+    // ── Delete one table ──────────────────────────────────
+    async function deleteTable(name) {
+        if (!confirm(`Supprimer toutes les donn\u00e9es de "${name}" ?`)) return;
+
+        showLoading('Suppression de ' + name + '...');
+        try {
+            const res = await fetch('/api/table/' + name, { method: 'DELETE' });
+            if (!res.ok) {
+                const err = await res.json().catch(() => ({}));
+                throw new Error(err.detail || err.error || 'Failed');
+            }
+            hideLoading();
+            showToast(name + ' vid\u00e9e', 'success');
+            await loadCounts();
+        } catch (e) {
+            hideLoading();
+            showToast('Erreur: ' + e.message, 'error');
+        }
+    }
+
+    // ── Seed demo (SSE verbose) ─────────────────────────
+    async function seedDemo() {
+        setButtonsDisabled(true);
+        showLoading('D\u00e9marrage...');
+        try {
+            const res = await fetch('/api/seed-demo', { method: 'POST' });
+            const reader = res.body.getReader();
+            const decoder = new TextDecoder();
+            let buffer = '';
+            while (true) {
+                const { done, value } = await reader.read();
+                if (done) break;
+                buffer += decoder.decode(value, { stream: true });
+                const lines = buffer.split('\n');
+                buffer = lines.pop();
+                for (const line of lines) {
+                    if (line.startsWith('data: ')) {
+                        const msg = line.substring(6);
+                        if (msg.startsWith('[DONE]')) {
+                            hideLoading();
+                            showToast(msg.substring(7), 'success');
+                        } else if (msg.startsWith('[ERROR]')) {
+                            hideLoading();
+                            showToast(msg.substring(8), 'error');
+                        } else {
+                            document.getElementById('loading-text').textContent = msg;
+                        }
+                    }
+                }
+            }
+            await loadCounts();
+        } catch (e) {
+            hideLoading();
+            showToast('Erreur: ' + e.message, 'error');
+        }
+        setButtonsDisabled(false);
+    }
+
+    // ── Seed test ─────────────────────────────────────────
+    async function seedTest() {
+        setButtonsDisabled(true);
+        showLoading('G\u00e9n\u00e9ration des donn\u00e9es de test...');
+        try {
+            const res = await fetch('/api/seed-test', { method: 'POST' });
+            if (!res.ok) {
+                const err = await res.json().catch(() => ({}));
+                throw new Error(err.detail || 'Failed');
+            }
+            hideLoading();
+            showToast('Donn\u00e9es de test g\u00e9n\u00e9r\u00e9es !', 'success');
+            await loadCounts();
+        } catch (e) {
+            hideLoading();
+            showToast('Erreur: ' + e.message, 'error');
+        }
+        setButtonsDisabled(false);
+    }
+
+    // ── Delete all ────────────────────────────────────────
+    async function deleteAll() {
+        if (!confirm('Supprimer TOUTES les donn\u00e9es du domaine ?\n\nCette action est irr\u00e9versible.')) return;
+
+        setButtonsDisabled(true);
+        showLoading('Suppression de toutes les donn\u00e9es...');
+        try {
+            const res = await fetch('/api/delete-all', { method: 'POST' });
+            if (!res.ok) {
+                const err = await res.json().catch(() => ({}));
+                throw new Error(err.detail || 'Failed');
+            }
+            hideLoading();
+            showToast('Toutes les donn\u00e9es supprim\u00e9es', 'success');
+            await loadCounts();
+        } catch (e) {
+            hideLoading();
+            showToast('Erreur: ' + e.message, 'error');
+        }
+        setButtonsDisabled(false);
+    }
+
+    // ── Close modal ───────────────────────────────────────
+    function closeModal(event) {
+        if (event && event.target !== event.currentTarget) return;
+        document.getElementById('modal-overlay').classList.remove('active');
+        document.querySelectorAll('.sidebar-item').forEach(el => el.classList.remove('active'));
+    }
+
+    // ── Helpers ───────────────────────────────────────────
+    function showLoading(text) {
+        document.getElementById('loading-text').textContent = text;
+        document.getElementById('loading-overlay').classList.add('active');
+    }
+    function hideLoading() {
+        document.getElementById('loading-overlay').classList.remove('active');
+    }
+
+    function showToast(message, type) {
+        if (type === 'error') {
+            showError(message);
+            return;
+        }
+        const toast = document.getElementById('toast');
+        toast.textContent = message;
+        toast.className = 'toast ' + type + ' visible';
+        setTimeout(() => toast.classList.remove('visible'), 3000);
+    }
+
+    function showError(message) {
+        const banner = document.getElementById('error-banner');
+        document.getElementById('error-banner-msg').textContent = message;
+        banner.classList.add('visible');
+    }
+
+    function closeError() {
+        document.getElementById('error-banner').classList.remove('visible');
+    }
+
+    function setButtonsDisabled(disabled) {
+        document.getElementById('btn-demo').disabled = disabled;
+        document.getElementById('btn-test').disabled = disabled;
+        document.getElementById('btn-delete-all').disabled = disabled;
+    }
+
+    // ── Keyboard ──────────────────────────────────────────
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') closeModal();
+    });
+</script>
+
+</body>
+</html>

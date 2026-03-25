@@ -1,0 +1,49 @@
+@{
+    ViewData["Title"] = "Tableau de bord";
+}
+
+<div class="dashboard">
+    <h1>Tableau de bord</h1>
+
+    <div class="kpi-row">
+        <div class="kpi-card" id="kpi-lots">
+            <div class="kpi-label">LOTS</div>
+            <div class="kpi-value" id="v-lots">—</div>
+        </div>
+        <div class="kpi-card" id="kpi-occupation">
+            <div class="kpi-label">TAUX OCCUPATION</div>
+            <div class="kpi-value" id="v-occupation">—</div>
+        </div>
+        <div class="kpi-card" id="kpi-impayes">
+            <div class="kpi-label">IMPAYÉS</div>
+            <div class="kpi-value" id="v-impayes">—</div>
+        </div>
+        <div class="kpi-card" id="kpi-incidents">
+            <div class="kpi-label">INCIDENTS OUVERTS</div>
+            <div class="kpi-value" id="v-incidents">—</div>
+        </div>
+        <div class="kpi-card" id="kpi-recettes">
+            <div class="kpi-label">RECETTES CONFIRMÉES</div>
+            <div class="kpi-value" id="v-recettes">—</div>
+        </div>
+        <div class="kpi-card" id="kpi-baux">
+            <div class="kpi-label">BAUX ACTIFS</div>
+            <div class="kpi-value" id="v-baux">—</div>
+        </div>
+    </div>
+
+    <div class="two-cols">
+        <div class="col">
+            <h2>Copropriétés</h2>
+            <div id="copro-list" class="card-list">Chargement...</div>
+        </div>
+        <div class="col">
+            <h2>Alertes</h2>
+            <div id="alerts-list" class="card-list">Aucune alerte</div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+<script src="~/js/dashboard.js"></script>
+}

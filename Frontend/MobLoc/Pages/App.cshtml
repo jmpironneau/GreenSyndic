@@ -1,0 +1,73 @@
+@page "/app/{**slug}"
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#2e7d32">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>GreenSyndic — Locataire</title>
+    <link rel="manifest" href="/manifest.json">
+    <link rel="icon" href="/img/logo.png">
+    <link rel="apple-touch-icon" href="/img/logo.png">
+    <link rel="stylesheet" href="/css/mob.css">
+</head>
+<body>
+    <!-- Top Navigation -->
+    <nav class="top-nav">
+        <div class="top-nav-inner">
+            <img src="http://localhost:5050/logo.png" alt="" class="nav-logo" onerror="this.style.display='none'">
+            <span class="logo">GreenSyndic <small>Mobile Locataire</small></span>
+            <span class="spacer"></span>
+            <button class="nav-btn" onclick="API.logout()" title="Déconnexion">⏻</button>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content" id="main-content">
+        <div class="spinner"></div>
+    </main>
+
+    <!-- Bottom Navigation — Locataire -->
+    <nav class="bottom-nav">
+        <a data-nav="/">
+            <span class="nav-icon">🏠</span>
+            Accueil
+        </a>
+        <a data-nav="/loyer">
+            <span class="nav-icon">💳</span>
+            Mon loyer
+        </a>
+        <a data-nav="/incidents">
+            <span class="nav-icon">🔧</span>
+            Signaler
+        </a>
+        <a data-nav="/documents">
+            <span class="nav-icon">📄</span>
+            Documents
+        </a>
+        <a data-nav="/contact">
+            <span class="nav-icon">💬</span>
+            Contact
+        </a>
+    </nav>
+
+    <!-- Modal -->
+    <div class="modal-overlay" id="modal-overlay" onclick="if(event.target===this)closeModal()">
+        <div class="modal-content">
+            <h2 class="modal-title"></h2>
+            <div class="modal-body"></div>
+        </div>
+    </div>
+
+    <!-- Toast -->
+    <div class="toast" id="toast"></div>
+
+    <script src="/js/api.js"></script>
+    <script src="/js/app.js"></script>
+</body>
+</html>

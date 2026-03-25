@@ -1,0 +1,92 @@
+@page "/app"
+@{ Layout = null; }
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>DeskSyndic — GreenSyndic</title>
+    <link rel="stylesheet" href="/css/desk.css?v=@DateTime.UtcNow.Ticks" />
+</head>
+<body>
+
+<!-- ═══ APP LAYOUT (hidden until login) ═══ -->
+<div class="app-layout" id="app-layout">
+
+    <!-- ── SIDEBAR ── -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <img src="http://localhost:5050/logo.png" alt="GreenSyndic" class="sidebar-logo" />
+            <div class="logo">
+                <span class="logo-text">GreenSyndic</span>
+                <span class="logo-sub">DeskSyndic</span>
+            </div>
+        </div>
+        <nav class="sidebar-nav" id="sidebar-nav">
+            <a href="/" data-nav="/" class="sidebar-link"><span class="sidebar-icon">📊</span><span class="sidebar-label">Tableau de bord</span></a>
+            <a href="/lots" data-nav="/lots" class="sidebar-link"><span class="sidebar-icon">🏢</span><span class="sidebar-label">Lots & Immeubles</span></a>
+            <a href="/comptabilite" data-nav="/comptabilite" class="sidebar-link"><span class="sidebar-icon">💰</span><span class="sidebar-label">Comptabilité</span></a>
+            <a href="/appels" data-nav="/appels" class="sidebar-link"><span class="sidebar-icon">📋</span><span class="sidebar-label">Appels de fonds</span></a>
+            <a href="/impayes" data-nav="/impayes" class="sidebar-link"><span class="sidebar-icon">💳</span><span class="sidebar-label">Impayés</span></a>
+            <a href="/ag" data-nav="/ag" class="sidebar-link"><span class="sidebar-icon">⚖️</span><span class="sidebar-label">Assemblées Générales</span></a>
+            <a href="/locatif" data-nav="/locatif" class="sidebar-link"><span class="sidebar-icon">🏠</span><span class="sidebar-label">Gestion locative</span></a>
+            <a href="/travaux" data-nav="/travaux" class="sidebar-link"><span class="sidebar-icon">🔧</span><span class="sidebar-label">Travaux & Incidents</span></a>
+            <a href="/communication" data-nav="/communication" class="sidebar-link"><span class="sidebar-icon">💬</span><span class="sidebar-label">Communication</span></a>
+            <a href="/documents" data-nav="/documents" class="sidebar-link"><span class="sidebar-icon">📁</span><span class="sidebar-label">Documents (GED)</span></a>
+            <a href="/reporting" data-nav="/reporting" class="sidebar-link"><span class="sidebar-icon">📈</span><span class="sidebar-label">Reporting</span></a>
+            <a href="/veille" data-nav="/veille" class="sidebar-link"><span class="sidebar-icon">📚</span><span class="sidebar-label">Veille juridique</span></a>
+            <a href="/annuaire" data-nav="/annuaire" class="sidebar-link"><span class="sidebar-icon">👥</span><span class="sidebar-label">Annuaire</span></a>
+            <a href="/configuration" data-nav="/configuration" class="sidebar-link"><span class="sidebar-icon">⚙️</span><span class="sidebar-label">Configuration</span></a>
+        </nav>
+    </aside>
+
+    <!-- ── RIGHT COLUMN ── -->
+    <div class="main-column">
+
+        <!-- ── TOP HEADER ── -->
+        <header class="top-header" id="top-header">
+            <div class="header-left">
+                <button class="sidebar-toggle" id="sidebar-toggle" title="Menu">☰</button>
+            </div>
+            <div class="header-right">
+                <div class="header-bell" id="header-bell" title="Notifications">
+                    🔔 <span class="bell-badge" id="bell-badge">0</span>
+                </div>
+                <div class="header-user-block">
+                    <span class="header-user" id="user-name">Admin</span>
+                    <span class="header-user-email" id="user-email">admin@greensyndic.ci</span>
+                    <span class="header-user-org" id="user-org">Green City Bassam</span>
+                </div>
+                <button class="btn btn-sm btn-logout" onclick="API.logout()">Déconnexion</button>
+                <div class="header-version-block">
+                    <div class="header-version-line1"><span id="header-timestamp"></span> <span class="env-badge">DEV</span></div>
+                    <div class="header-version-line2" id="header-gitinfo">v0.1.0 · ------</div>
+                </div>
+            </div>
+        </header>
+
+        <!-- ── MAIN CONTENT ── -->
+        <main class="main-area" id="main-content">
+            <div class="spinner"></div>
+        </main>
+    </div>
+</div>
+
+<!-- ═══ MODAL ═══ -->
+<div class="modal-overlay" id="modal-overlay">
+    <div class="modal">
+        <div class="modal-header">
+            <h3 id="modal-title"></h3>
+            <button class="modal-close" onclick="closeModal()">&times;</button>
+        </div>
+        <div class="modal-body" id="modal-body"></div>
+    </div>
+</div>
+
+<!-- ═══ TOAST ═══ -->
+<div class="toast" id="toast"></div>
+
+<script>document.write('<scr'+'ipt src="/js/api.js?v='+Date.now()+'"><\/scr'+'ipt>');</script>
+<script>document.write('<scr'+'ipt src="/js/app.js?v='+Date.now()+'"><\/scr'+'ipt>');</script>
+</body>
+</html>

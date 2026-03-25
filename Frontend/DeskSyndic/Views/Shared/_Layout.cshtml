@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>GreenSyndic — DeskSyndic</title>
+    <link rel="stylesheet" href="~/css/desk.css"/>
+</head>
+<body>
+    <nav class="top-bar">
+        <div class="logo">🏢 GreenSyndic</div>
+        <div class="nav-links">
+            <a href="/" class="active">Accueil</a>
+            <a href="/coproprietes">Copropriétés</a>
+            <a href="/comptabilite">Comptabilité</a>
+            <a href="/ag">AG</a>
+            <a href="/travaux">Travaux</a>
+            <a href="/communication">Communication</a>
+            <a href="/reporting">Reporting</a>
+        </div>
+        <div class="user-area">
+            <span id="user-name">Admin</span>
+            <button id="btn-logout" class="btn-sm">Déconnexion</button>
+        </div>
+    </nav>
+
+    <main class="content">
+        @RenderBody()
+    </main>
+
+    <script src="~/js/api.js"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

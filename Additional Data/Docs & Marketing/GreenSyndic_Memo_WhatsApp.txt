@@ -1,0 +1,46 @@
+🏢 *GreenSyndic — Accès aux applications*
+_Green City Bassam — COFIPRI_
+23 mars 2026
+
+━━━━━━━━━━━━━━━━━━━━
+
+📋 *Applications disponibles*
+
+🖥️ *Gestion Syndic (Desktop)*
+https://gestiongreensyndic.entreezen.com/app
+Back-office complet de gestion
+
+📱 *Mobile Syndic (Terrain)*
+https://gestionmobgreensyndic.entreezen.com/app
+Incidents, VTI, impayés, validation
+
+🏠 *Espace Propriétaire*
+https://proprietairegreensyndic.entreezen.com/app
+Compte, paiements, documents, vote AG
+
+🔑 *Espace Locataire*
+https://locatairegreensyndic.entreezen.com/app
+Loyer, quittances, signalements
+
+━━━━━━━━━━━━━━━━━━━━
+
+🔐 *Identifiants*
+Email : admin@greensyndic.ci
+Mot de passe : Admin@2026!
+
+━━━━━━━━━━━━━━━━━━━━
+
+🔴 *IMPORTANT*
+L'application Gestion Syndic fonctionne UNIQUEMENT sur PC Desktop avec écran large.
+Sur mobile, utilisez *Mobile Syndic*.
+
+━━━━━━━━━━━━━━━━━━━━
+
+📲 *Installation mobile*
+1. Ouvrez le lien dans Chrome/Safari
+2. Appuyez sur « Ajouter à l'écran d'accueil »
+3. L'appli apparaît comme une icône
+
+━━━━━━━━━━━━━━━━━━━━
+
+📧 Support : admin@greensyndic.ci

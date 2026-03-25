@@ -1,0 +1,73 @@
+@page "/app/{**slug}"
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#2e7d32">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>GreenSyndic</title>
+    <link rel="manifest" href="/manifest.json">
+    <link rel="icon" href="/logo.png">
+    <link rel="apple-touch-icon" href="/logo.png">
+    <link rel="stylesheet" href="/css/app.css">
+</head>
+<body>
+    <!-- Top Navigation -->
+    <nav class="top-nav">
+        <span class="logo">GreenSyndic</span>
+        <span class="spacer"></span>
+        <button class="nav-btn" onclick="API.logout()" title="Déconnexion">⏻</button>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content" id="main-content">
+        <div class="spinner"></div>
+    </main>
+
+    <!-- FAB (Floating Action Button) -->
+    <button class="btn-fab hidden" id="fab">+</button>
+
+    <!-- Bottom Navigation -->
+    <nav class="bottom-nav">
+        <a data-nav="/">
+            <span class="nav-icon">📊</span>
+            Accueil
+        </a>
+        <a data-nav="/units">
+            <span class="nav-icon">🏠</span>
+            Lots
+        </a>
+        <a data-nav="/payments">
+            <span class="nav-icon">🏦</span>
+            Trésorerie
+        </a>
+        <a data-nav="/incidents">
+            <span class="nav-icon">⚠️</span>
+            Incidents
+        </a>
+        <a data-nav="/pay">
+            <span class="nav-icon">💸</span>
+            Décaisser
+        </a>
+    </nav>
+
+    <!-- Modal -->
+    <div class="modal-overlay" id="modal-overlay" onclick="if(event.target===this)closeModal()">
+        <div class="modal-content">
+            <h2 class="modal-title"></h2>
+            <div class="modal-body"></div>
+        </div>
+    </div>
+
+    <!-- Toast -->
+    <div class="toast" id="toast"></div>
+
+    <script src="/js/api.js"></script>
+    <script src="/js/app.js"></script>
+</body>
+</html>

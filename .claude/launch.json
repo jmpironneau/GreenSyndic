@@ -1,0 +1,17 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "backend",
+      "runtimeExecutable": "dotnet",
+      "runtimeArgs": ["run", "--project", "Backend/GreenSyndic.Api", "--urls", "http://localhost:5050"],
+      "port": 5050
+    },
+    {
+      "name": "desksyndic",
+      "runtimeExecutable": "dotnet",
+      "runtimeArgs": ["run", "--project", "Frontend/DeskSyndic", "--urls", "http://localhost:5051"],
+      "port": 5051
+    }
+  ]
+}

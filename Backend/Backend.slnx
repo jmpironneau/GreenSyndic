@@ -1,0 +1,9 @@
+<Solution>
+  <Project Path="GreenSyndic.Api/GreenSyndic.Api.csproj" />
+  <Project Path="GreenSyndic.Core/GreenSyndic.Core.csproj" />
+  <Project Path="GreenSyndic.Infrastructure/GreenSyndic.Infrastructure.csproj" />
+  <Project Path="GreenSyndic.Services/GreenSyndic.Services.csproj" />
+  <Folder Name="/tests/">
+    <Project Path="GreenSyndic.Tests/GreenSyndic.Tests.csproj" />
+  </Folder>
+</Solution>

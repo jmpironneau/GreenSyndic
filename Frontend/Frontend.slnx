@@ -1,0 +1,7 @@
+<Solution>
+  <Project Path="DeskSyndic/DeskSyndic.csproj" />
+  <Project Path="MobSyndic/MobSyndic.csproj" />
+  <Project Path="MobProprio/MobProprio.csproj" />
+  <Project Path="MobLoc/MobLoc.csproj" />
+  <Project Path="Seed/Seed.csproj" />
+</Solution>
